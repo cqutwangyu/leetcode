@@ -1,7 +1,10 @@
-package com.company;
+package com.company.huawei;
 
 import java.util.Scanner;
 
+/**
+ * 将字符串中任意两个字符交换位置，使字符串转ASCII数字后尽可能小，输出交换后的字符串。
+ */
 public class Main {
 
     public static void main(String[] args) {

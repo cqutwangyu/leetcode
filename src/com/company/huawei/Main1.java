@@ -1,9 +1,9 @@
-package com.company;
+package com.company.huawei;
 
 import java.util.Scanner;
 
 /**
- *
+ * 给你n个数，给你一个窗口大小，让你求出这个窗口在数组中能取得的最大和。
  */
 public class Main1 {
 
