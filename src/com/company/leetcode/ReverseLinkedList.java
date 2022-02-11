@@ -63,5 +63,22 @@ public class ReverseLinkedList {
             }
             return pev;
         }
+
+        // 尾递归方法
+//        public ListNode reverseList(ListNode head) {
+//            // 一开始prev是null
+//            return reverse(null, head);
+//        }
+
+        private static ListNode reverse(ListNode pre, ListNode cur) {
+            // 当cur为null，返回prev
+            if (cur == null) return pre;
+            // next作为下一次的cur
+            ListNode next = cur.next;
+            // cur的next指向prev
+            cur.next = pre;
+            // cur作为下一次的perv
+            return reverse(cur, next);
+        }
     }
 }
