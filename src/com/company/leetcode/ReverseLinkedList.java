@@ -38,6 +38,13 @@ import java.util.List;
  */
 public class ReverseLinkedList {
     class Solution {
+
+        /**
+         * 三个值：pev、cur、next
+         * pev一开始为空
+         * cur指向pev，并作为下一次的pev，直到cur为空
+         * next作为下一次的cur
+         */
         public ListNode reverseList(ListNode head) {
             //上一个节点（也是最终返回的对象）
             ListNode pev = null;
