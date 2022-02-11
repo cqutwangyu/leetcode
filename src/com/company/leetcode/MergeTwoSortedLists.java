@@ -41,8 +41,13 @@ public class MergeTwoSortedLists {
          * 比较两个链表的节点大小，那个节点值小，就取那个节点
          * 被添加过的节点则指向自己的下一个节点，进入下一次比较
          * 利用递归的压栈特性，最终返回结果是第一次入栈时所需要return的那个链表
+         * <p>
+         * 两个升序链表，合并为一个新的升序链表
+         * 小的在前面，大的在后面
+         * 比较root的值大小，小的作为return
          */
         public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+            //两个链表判空return
             if (l1 == null) {
                 return l2;
             }
@@ -50,6 +55,7 @@ public class MergeTwoSortedLists {
                 return l1;
             }
 
+            // 谁小谁先，进入递归
             if (l1.val < l2.val) {
                 l1.next = mergeTwoLists(l1.next, l2);
                 return l1;
