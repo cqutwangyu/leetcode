@@ -49,6 +49,8 @@ import java.util.Queue;
 public class RottingOranges {
 
     class Solution {
+
+
         public int orangesRotting(int[][] grid) {
             int rows = grid.length;
             int cols = grid[0].length;
@@ -74,27 +76,30 @@ public class RottingOranges {
                 return count;
             }
 
-            //上下左右四个方向
+            //上下左右四个方向 [行的+1和-1,列的+1和-1]
             int[][] dir = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
             //初始时queue中是所有值为2的坐标（坏掉的橘子坐标）
             //第二圈开始，是被感染导致坏掉的橘子坐标
             while (!queue.isEmpty()) {
+                //坏橘子的坐标
                 int[] poll = queue.poll();
                 int r = poll[0];
                 int c = poll[1];
-                //四个方向的操作
+                //四个方向的扩张操作
                 for (int d = 0; d < 4; d++) {
                     int newR = r + dir[d][0];
                     int newC = c + dir[d][1];
+                    //上下左右都没有超出边界
                     if (newR >= 0 && newC >= 0 && newR < rows && newC < cols) {
                         //邻居是一个新鲜橘子
                         if (grid[newR][newC] == 1) {
                             //新鲜橘子减少一个
                             count--;
-                            //新鲜橘子的值，为当前这个坏橘子的值+1
+                            //新鲜橘子的值，为当前这个坏橘子的值+1，我们认为大于1的都是坏橘子，越大就是越晚坏的
                             grid[newR][newC] = grid[r][c] + 1;
                             //记录这个新橘子变坏所用的时间（max-2就是结果）
                             max = grid[newR][newC];
+                            //将这个刚变坏的橘子添加进队列
                             queue.add(new int[]{newR, newC});
                         }
                     }
