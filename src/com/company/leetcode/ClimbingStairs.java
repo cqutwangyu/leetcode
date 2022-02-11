@@ -31,20 +31,26 @@ package com.company.leetcode;
  */
 public class ClimbingStairs {
     class Solution {
+        /**
+         斐波那契数列 a1,a2,a3 保持a3=a2+a1的规律
+         */
         public int climbStairs(int n) {
             if (n <= 2) {
                 return n;
             }
-            //求斐波那契数列 n[i]=n[i-1]+n[i-2]
-            int[] dp = new int[3];
-            dp[1] = 1;
-            dp[2] = 2;
+            //a1=1,a2=2
+            int[] dp = {1,2};
+            //上来就求第一个a3
             for (int i = 3; i <= n; i++) {
-                int sum = dp[1] + dp[2];
-                dp[1] = dp[2];
-                dp[2] = sum;
+                //a3=a1+a2
+                int sum = dp[0] + dp[1];
+                //a2设为a1
+                dp[0] = dp[1];
+                //a3设为a2
+                dp[1] = sum;
             }
-            return dp[2];
+            //最终的a2就是跳到n的方法数
+            return dp[1];
         }
     }
 }
