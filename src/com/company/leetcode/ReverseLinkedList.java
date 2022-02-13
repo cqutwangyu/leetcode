@@ -2,8 +2,6 @@ package com.company.leetcode;
 
 import com.company.leetcode.domain.ListNode;
 
-import java.util.List;
-
 /**
  * 206.反转链表
  * <p>
@@ -70,7 +68,7 @@ public class ReverseLinkedList {
 //            return reverse(null, head);
 //        }
 
-        private static ListNode reverse(ListNode pre, ListNode cur) {
+        private ListNode reverse(ListNode pre, ListNode cur) {
             // 当cur为null，返回prev
             if (cur == null) return pre;
             // next作为下一次的cur
