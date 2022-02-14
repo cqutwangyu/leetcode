@@ -42,6 +42,7 @@ public class SearchRange {
                 return new int[]{0, 0};
             }
             int left = 0, right = nums.length - 1;
+            // 二分查找
             while (left < right) {
                 int mid = left + (right - left) / 2;
                 if (nums[mid] == target) {
@@ -52,17 +53,21 @@ public class SearchRange {
                     right = mid - 1;
                 }
             }
+            //没找到直接返回-1
             int[] answer = {-1, -1};
-            if (left < right) {
+            //找到之后 target一定在left和right之间
+            if (left <= right) {
                 for (int i = left; i <= right; i++) {
                     if (answer[0] == -1 && nums[i] == target) {
+                        //第一个target的位置
                         answer[0] = i;
+                        answer[1] = i;
                     } else if (nums[i] == target) {
+                        //最后一个target的位置
                         answer[1] = i;
                     }
                 }
             }
-            answer[1] = answer[1] == -1 ? answer[0] : answer[1];
             return answer;
         }
     }
