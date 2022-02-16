@@ -70,5 +70,58 @@ public class SearchRange {
             }
             return answer;
         }
+
+        private int left(int[] nums, int target) {
+            int left = 0;
+            int right = nums.length - 1;
+
+            while (left <= right) {
+                int mid = left + (right - left) / 2;
+
+                if (target == nums[mid]) {
+                    // 缩小右边界，在左半部分继续查找
+                    right = mid - 1;
+                } else if (target < nums[mid]) {
+                    right = mid - 1;
+                } else if (target > nums[mid]) {
+                    left = mid + 1;
+                }
+            }
+
+            if (left == nums.length || nums[left] != target) {
+                return -1;
+            }
+            return left;
+        }
+
+        private int right(int[] nums, int target) {
+            int left = 0;
+            int right = nums.length;
+
+            // 循环结束的条件是left==right
+            while (left < right) {
+                int mid = left + (right - left) / 2;
+
+                if (target == nums[mid]) {
+                    // 继续在右半部分查找
+                    left = mid + 1;
+                } else if (target < nums[mid]) {
+                    right = mid;
+                } else if (target > nums[mid]) {
+                    left = mid + 1;
+                }
+            }
+
+            // right == 0 一是数组为空，即{}
+            // 二是目标值target小于数组中所有元素
+            if (right == 0 || nums[right - 1] != target) {
+                return -1;
+            }
+            // 最后返回right-1，是因为循环结束的条件是left==right
+            // 而left=mid+1，mid所在位置即为目标值所在位置
+            // 因此mid=left-1，即mid=right-1
+            return right - 1;
+        }
+
     }
 }
