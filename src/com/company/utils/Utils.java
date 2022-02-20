@@ -1,5 +1,7 @@
 package com.company.utils;
 
+import com.company.leetcode.domain.ListNode;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -62,4 +64,33 @@ public final class Utils {
         return min + (long) (Math.random() * ((max - min)));
     }
 
+    public static ListNode newListNode(int[] ints) {
+        ListNode head = null, prev = null, cur;
+        if (ints != null && ints.length != 0) {
+            head = new ListNode();
+            cur = head;
+            for (int i : ints) {
+                cur.val = i;
+                cur.next = new ListNode();
+                prev = cur;
+                cur = cur.next;
+            }
+            prev.next = null;
+        }
+        return head;
+    }
+
+    public static void print(ListNode node1) {
+        if (node1 != null) {
+            System.out.print(node1.val);
+            System.out.print(" -> ");
+            print(node1.next);
+        }
+    }
+
+    public static void print(List<List<Integer>> lists) {
+        for (List<Integer> list : lists) {
+            System.out.println(Arrays.toString(list.toArray()));
+        }
+    }
 }
