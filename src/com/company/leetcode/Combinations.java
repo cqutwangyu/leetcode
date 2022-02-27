@@ -40,10 +40,13 @@ public class Combinations {
     public static class Solution {
 
         public List<List<Integer>> combine(int n, int k) {
+            //保存结果集
             List<List<Integer>> res = new ArrayList<>();
+            //判定空结果集
             if (k <= 0 || n < k) {
                 return res;
             }
+            //记录组合路径
             Deque<Integer> path = new ArrayDeque<>();
             //根据题意1到n的数，从1开始
             dfs(n, k, 1, path, res);
@@ -51,14 +54,16 @@ public class Combinations {
         }
 
         private void dfs(int n, int k, int index, Deque<Integer> path, List<List<Integer>> res) {
+            //组合中的数字达到k个
             if (path.size() == k) {
+                //避免path修改导致结果集修改，add new list
                 res.add(new ArrayList<>(path));
                 return;
             }
 
             // 只有这里 i <= n - (k - path.size()) + 1 与参考代码 1 不同
 //            for (int i = index; i <= n; i++) {
-            // 剪枝（剩余的数组不成k个数的组合）
+            // i <= n - (k - path.size()) + 1 是做剪枝优化（剩余的数组不成k个数的组合），避免无效递归
             for (int i = index; i <= n - (k - path.size()) + 1; i++) {
                 path.addLast(i);
 //                System.out.println("递归之前 => " + path);

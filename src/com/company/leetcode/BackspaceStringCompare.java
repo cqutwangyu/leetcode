@@ -49,34 +49,38 @@ public class BackspaceStringCompare {
             int i = s.length() - 1, j = t.length() - 1;
             int skipS = 0, skipT = 0;
 
+            //从后往前比
             while (i >= 0 || j >= 0) {
                 while (i >= 0) {
-                    if (s.charAt(i) == '#') {
+                    if (s.charAt(i) == '#') {//遇到#跳过cur，且next跳过
                         skipS++;
                         i--;
-                    } else if (skipS > 0) {
+                    } else if (skipS > 0) {//跳过next
                         skipS--;
                         i--;
-                    } else {
+                    } else {//i是有效值
                         break;
                     }
                 }
                 while (j >= 0) {
-                    if (t.charAt(j) == '#') {
+                    if (t.charAt(j) == '#') {//遇到#跳过cur，且next跳过
                         skipT++;
                         j--;
-                    } else if (skipT > 0) {
+                    } else if (skipT > 0) {//跳过next
                         skipT--;
                         j--;
-                    } else {
+                    } else {//j是有效值
                         break;
                     }
                 }
+                //i和j都是有效值
                 if (i >= 0 && j >= 0) {
+                    //如果i和j的cur有效值不一样，则结果为false
                     if (s.charAt(i) != t.charAt(j)) {
                         return false;
                     }
-                } else {
+                } else {//i和j中存在下标出界了
+                    //其中存在下标不出界的，说明结果的长度不一样，则结果为false
                     if (i >= 0 || j >= 0) {
                         return false;
                     }
@@ -84,6 +88,7 @@ public class BackspaceStringCompare {
                 i--;
                 j--;
             }
+            //最终i和j都小于0了，且比较过的每一个有效值都相同，则结果为true
             return true;
         }
 

@@ -1,8 +1,5 @@
 package com.company.leetcode;
 
-import java.util.Arrays;
-import java.util.TreeMap;
-
 /**
  * 153. 寻找旋转排序数组中的最小值
  * <p>
@@ -51,11 +48,10 @@ import java.util.TreeMap;
 public class FindMinimumInRotatedSortedArray {
     class Solution {
 
-
         public int findMin(int[] nums) {
             //1 <= n <= 5000 直接暴力解
             int min = nums[0];
-            for (int i = nums.length / 2; i < nums.length; i++) {
+            for (int i = 0; i < nums.length; i++) {
                 min = Math.min(min, nums[i]);
             }
             return min;
@@ -78,9 +74,10 @@ public class FindMinimumInRotatedSortedArray {
                 mid = l + ((r - l) >> 1);
                 //mid小于right,说明是升序
                 if (nums[mid] < nums[r]) {
-                    r = mid;//r永远不会小于l
-                } else {
-                    //否则存在陡然变小的情况，l往右走
+                    //升序说明最小的在左边
+                    r = mid;//r永远不会小于l，最小值可能是mid
+                } else {//nums[min] >= nums[r]
+                    //存在陡然变小的情况，最小值在mid右边，l往右走
                     l = mid + 1;//l可能等于r
                 }
             }

@@ -20,18 +20,22 @@ public class CountOperations {
 
     class Solution {
         public int countOperations(int num1, int num2) {
+            //初始化递归count为0
             return dfs(num1, num2, 0);
         }
 
         private int dfs(int num1, int num2, int count) {
+            //两个num中有一个为0则答案为当前count
             if (num1 == 0 || num2 == 0) {
                 return count;
             }
+            //谁大用谁减去小的值，count+1递归，return count
             if (num1 >= num2) {
                 count = dfs(num1 - num2, num2, count + 1);
             } else {
                 count = dfs(num1, num2 - num1, count + 1);
             }
+            //递归完return count
             return count;
         }
     }
