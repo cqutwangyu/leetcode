@@ -68,7 +68,7 @@ public class PlatesBetweenCandles {
     }
 
     static class Solution {
-        public int[] platesBetweenCandles4(String s, int[][] qs) {
+        public int[] platesBetweenCandles(String s, int[][] qs) {
             //预处理
             char[] cs = s.toCharArray();
             int n = cs.length, m = qs.length;
@@ -99,7 +99,7 @@ public class PlatesBetweenCandles {
             return ans;
         }
 
-        public int[] platesBetweenCandles(String s, int[][] qs) {
+        public int[] platesBetweenCandles4(String s, int[][] qs) {
             //预处理
             char[] cs = s.toCharArray();
             int n = cs.length, m = qs.length;
