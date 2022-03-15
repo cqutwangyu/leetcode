@@ -43,7 +43,7 @@ public class Permutations {
         public List<List<Integer>> permute(int[] nums) {
             List<List<Integer>> answer = new ArrayList<>();
             boolean[] visited = new boolean[nums.length];
-            backtrack(answer, nums, new ArrayList<>(), visited);
+            backtrack(answer, nums, new ArrayList<Integer>(), visited);
             return answer;
         }
 
