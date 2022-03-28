@@ -47,6 +47,7 @@ public class RearrangeArrayElementsBySign {
     class Solution {
         public int[] rearrangeArray(int[] nums) {
             int[] ints = new int[nums.length];
+            //i是新数组的下标，q找正数，p找负数
             for (int i = 0, q = 0, p = 0; i < nums.length; i++) {
                 while (nums[q] < 0) {
                     q++;
@@ -54,6 +55,7 @@ public class RearrangeArrayElementsBySign {
                 while (nums[p] > 0) {
                     p++;
                 }
+                //下标移动
                 ints[i++] = nums[q++];
                 ints[i] = nums[p++];
             }
